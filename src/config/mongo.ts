@@ -11,7 +11,7 @@ export async function dbConnect() {
 
   if (mongoose.connection.readyState === 1) return;
 
-  connectionPromise ??= mongoose.connect(DB_URI);
+  connectionPromise ??= mongoose.connect(DB_URI, { serverSelectionTimeoutMS: 5000 });
   try {
     await connectionPromise;
   } catch (error) {
